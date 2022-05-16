@@ -47,6 +47,22 @@ export const initialState = {
   sellQuotes: []
 }
 
+const smallerThan = (max) => (_, index) => index < max
+const computeTotalAndFormat = (computed, { price, size }) => {
+  const latest = computed[computed.length - 1]
+  const total = (
+    Number.parseInt(latest?.total ?? 0) + Number.parseInt(size)
+  ).toString()
+
+  computed.push({
+    price: formatNumber(price),
+    size: formatNumber(size),
+    total
+  })
+
+  return computed
+}
+
 export const orderbookSlice = createSlice({
   name: 'orderbook',
   initialState,
@@ -59,28 +75,17 @@ export const orderbookSlice = createSlice({
     updateBuyQuotes: (state, action) => {
       const { buyQuote } = action.payload
       if (Array.isArray(buyQuote)) {
-        // state.buyQuote = data.map()
+        state.buyQuotes = buyQuote
+          .filter(smallerThan(MAX_QUOTES))
+          .reduce(computeTotalAndFormat, [])
       }
     },
     updateSellQuotes: (state, action) => {
       const { sellQuote } = action.payload
       if (Array.isArray(sellQuote)) {
         state.sellQuotes = sellQuote
-          .filter((_, index) => index < MAX_QUOTES)
-          .reduceRight((computed, { price, size }) => {
-            const latest = computed[computed.length - 1]
-            const total = (
-              Number.parseInt(latest?.total ?? 0) + Number.parseInt(size)
-            ).toString()
-
-            computed.push({
-              price: formatNumber(price),
-              size,
-              total
-            })
-
-            return computed
-          }, [])
+          .filter(smallerThan(MAX_QUOTES))
+          .reduceRight(computeTotalAndFormat, [])
           .reverse()
       }
     }

@@ -13,10 +13,10 @@ const QuoteRows = ({ type }) => {
   // console.log(type, quotes)
 
   return (
-    <section>
+    <section className={styles.quote__list}>
       {quotes.map(({ price, size, total }, index) => (
         <div
-          className={`${styles.quote__header} ${styles.quotes__row__text}`}
+          className={`${styles.quote__header} ${styles.quotes__row__text} `}
           key={price}
         >
           <div className={`${styles.quote__header__price} ${priceStyle}`}

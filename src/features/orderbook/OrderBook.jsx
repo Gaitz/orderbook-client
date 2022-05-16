@@ -2,7 +2,7 @@ import styles from './OrderBook.module.css'
 import LastPrice from './LastPrice'
 import QuoteRows from './QuoteRows'
 import { useDispatch } from 'react-redux'
-import { QUOTE_TYPE, updateLatestPrice, updateSellQuotes } from './orderbook.slice'
+import { QUOTE_TYPE, updateBuyQuotes, updateLatestPrice, updateSellQuotes } from './orderbook.slice'
 import mockWebSocketResponse from './mockWebSocketResponse'
 
 const OrderBook = () => {
@@ -14,6 +14,7 @@ const OrderBook = () => {
   }))
 
   dispatch(updateSellQuotes(mockWebSocketResponse))
+  dispatch(updateBuyQuotes(mockWebSocketResponse))
 
   return (
     <article className={styles.container}>

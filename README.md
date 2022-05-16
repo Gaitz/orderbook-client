@@ -7,13 +7,13 @@
 
 ## Requirements
 
-- [ ] Show max 8 quotes for both buy and sell. Quote row should vertical align center.
+- [x] Show max 8 quotes for both buy and sell. Quote row should vertical align center.
 - [x] Format number with commas as thousands separators.
 - [ ] Add hover background color on whole row when mouse hover on the quote.
 - [x] Last price is up or down is determine by the data `gain` .
       (1 means up, -1 means down, 0 for changed)
-- [ ] Price percentage change can be omitted.
-- [ ] Quote total formula:
+- [x] Price percentage change can be omitted.
+- [x] Quote total formula:
   - Sell quotes: sum up quote size from lowest price quote to the highest
   - Buy quotes: sum up quote size from highest price quote to the lowest
 - [ ] Add hover calculation tooltip

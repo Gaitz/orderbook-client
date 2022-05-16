@@ -23,7 +23,7 @@ describe('sell quotes', () => {
     updatedState.sellQuotes = [
       {
         price: '47,201.0',
-        size: '1581',
+        size: '1,581',
         total: '8281'
       },
       {
@@ -33,7 +33,7 @@ describe('sell quotes', () => {
       },
       {
         price: '47,198.5',
-        size: '1944',
+        size: '1,944',
         total: '5944'
       },
       {
@@ -43,7 +43,7 @@ describe('sell quotes', () => {
       },
       {
         price: '47,195.5',
-        size: '1471',
+        size: '1,471',
         total: '3556'
       },
       {
@@ -58,7 +58,7 @@ describe('sell quotes', () => {
       },
       {
         price: '47,193.0',
-        size: '1372',
+        size: '1,372',
         total: '1372'
       }
     ]
