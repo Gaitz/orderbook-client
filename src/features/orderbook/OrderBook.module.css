@@ -1,0 +1,41 @@
+@value pad-left: 10px;
+
+.container {
+  background-color: #1e2c4c;
+  width: 25vw;
+  height: 500px;
+}
+
+.component__title {
+  padding-left: pad-left;
+  font-size: 15px;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #8698aa;
+}
+
+.quote__header {
+  font-size: 12px;
+  color: #8698aa;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.lastPrice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lastPrice__text {
+  font-size: 16.8px;
+  font-weight: 700;
+}
+
+.lastPrice__arrow {
+  padding-left: 3px;
+  width: 15px;
+  height: 15px;
+}
