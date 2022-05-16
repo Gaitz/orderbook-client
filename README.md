@@ -29,7 +29,7 @@
 
   [https://api.btse.com/futures/api/v2.1/orderbook/L2](https://api.btse.com/futures/api/v2.1/orderbook/L2)
 
-- [ ] Bonus point for connecting to Websocket API:
+- [x] Bonus point for connecting to Websocket API:
 
   Endpoint: `wss://ws.btse.com/ws/futures`
 
