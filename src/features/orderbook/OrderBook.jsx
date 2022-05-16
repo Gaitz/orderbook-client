@@ -1,18 +1,28 @@
 import styles from './OrderBook.module.css'
 import LastPrice from './LastPrice'
+import QuoteRows from './QuoteRows'
+import { useDispatch } from 'react-redux'
+import { updateLatestPrice } from './orderbook.slice'
 
 const OrderBook = () => {
+  const dispatch = useDispatch()
+
+  dispatch(updateLatestPrice({
+    lastPrice: '47162.5',
+    gain: 1
+  }))
+
   return (
     <article className={styles.container}>
       <h2 className={styles.component__title}>Order Book</h2>
       <header className={styles.quote__header}>
-        <span>Price (USD)</span>
-        <span>Size</span>
-        <span>Total</span>
+        <div className={styles.quote__header__price}>Price (USD)</div>
+        <div className={styles.quote__header__size}>Size</div>
+        <div className={styles.quote__header__total}>Total</div>
       </header>
-      {/* <QuoteRows /> */}
-      <LastPrice lastPrice={'47126.0'} gain={0} />
-      {/* <QuoteRows /> */}
+      <QuoteRows />
+      <LastPrice />
+      <QuoteRows />
     </article>
   )
 }

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen } from '../../shared/testUtil'
 import OrderBook from './OrderBook'
 
 test('renders Order Book title', () => {

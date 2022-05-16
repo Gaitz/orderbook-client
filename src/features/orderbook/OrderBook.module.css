@@ -21,8 +21,19 @@
   font-size: 12px;
   color: #8698aa;
   display: flex;
+  width: 100%;
   align-items: center;
-  justify-content: space-around;
+  text-align: right;
+  padding: 5px 10px 5px;
+  box-sizing: border-box;
+}
+
+.quote__header__price, .quote__header__size  {
+  flex: 1 1 27%;
+}
+
+.quote__header__total {
+  flex: 1 1 46%;
 }
 
 .lastPrice {

@@ -1,11 +1,15 @@
 import PropTypes from 'prop-types'
 import IconArrowDown from '../../shared/styles/IconArrowDown'
 import styles from './OrderBook.module.css'
+import { useSelector } from 'react-redux'
 
 const UP = 1
 const DOWN = -1
 
-const LastPrice = ({ lastPrice, gain = 0 }) => {
+const LastPrice = () => {
+  const lastPrice = useSelector(state => state.orderbook.lastPrice)
+  const gain = useSelector(state => state.orderbook.gain)
+
   const isUp = gain === UP
   const isDown = gain === DOWN
 
