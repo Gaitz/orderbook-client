@@ -2,25 +2,20 @@ import PropTypes from 'prop-types'
 import IconArrowDown from '../../shared/styles/IconArrowDown'
 import styles from './OrderBook.module.css'
 import { useSelector } from 'react-redux'
-
-const UP = 1
-const DOWN = -1
+import { selectIsDownGain, selectIsUpGain, selectLastPrice } from './orderbook.slice'
 
 const LastPrice = () => {
-  const lastPrice = useSelector(state => state.orderbook.lastPrice)
-  const gain = useSelector(state => state.orderbook.gain)
-
-  const isUp = gain === UP
-  const isDown = gain === DOWN
+  const lastPrice = useSelector(selectLastPrice)
+  const isUp = useSelector(selectIsUpGain)
+  const isDown = useSelector(selectIsDownGain)
 
   let arrow
-  switch (gain) {
-    case UP:
-      arrow = <IconArrowDown rotate={180} />
-      break
-    case DOWN:
-      arrow = <IconArrowDown />
-      break
+  if (isUp) {
+    arrow = <IconArrowDown rotate={180} />
+  }
+
+  if (isDown) {
+    arrow = <IconArrowDown />
   }
 
   return (
