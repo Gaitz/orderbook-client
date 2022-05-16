@@ -11,7 +11,7 @@ const OrderBook = () => {
         <span>Total</span>
       </header>
       {/* <QuoteRows /> */}
-      <LastPrice lastPrice={'47126.0'} gain={1} />
+      <LastPrice lastPrice={'47126.0'} gain={0} />
       {/* <QuoteRows /> */}
     </article>
   )
