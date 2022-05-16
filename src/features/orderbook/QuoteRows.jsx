@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types'
-import { QUOTE_TYPE } from './orderbook.slice'
+import { QUOTE_TYPE, selectQuotes } from './orderbook.slice'
+import { useSelector } from 'react-redux'
 
 const QuoteRows = ({ type }) => {
+  const quotes = useSelector(state => selectQuotes(state, type))
+
   return <>{type}</>
 }
 

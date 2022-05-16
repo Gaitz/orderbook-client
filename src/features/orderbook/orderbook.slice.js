@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSelector, createSlice } from '@reduxjs/toolkit'
 import { formatNumber } from '../../shared/utils'
 
 export const GAIN = {
@@ -38,11 +38,13 @@ export const QUOTE_TYPE = {
   SELL: 'sell'
 }
 
-const initialState = {
+export const MAX_QUOTES = 8
+
+export const initialState = {
   lastPrice: '',
   gain: 0,
-  buyQuote: [],
-  sellQuote: []
+  buyQuotes: [],
+  sellQuotes: []
 }
 
 export const orderbookSlice = createSlice({
@@ -55,24 +57,56 @@ export const orderbookSlice = createSlice({
       state.gain = GAIN.parseRawGain(gain)
     },
     updateBuyQuote: (state, action) => {
-      const { data } = action.payload
-      if (Array.isArray(data)) {
+      const { buyQuote } = action.payload
+      if (Array.isArray(buyQuote)) {
         // state.buyQuote = data.map()
       }
     },
     updateSellQuote: (state, action) => {
-      const { data } = action.payload
-      if (Array.isArray(data)) {
-        // state.buyQuote = data.map()
+      const { sellQuote } = action.payload
+      if (Array.isArray(sellQuote)) {
+        state.sellQuotes = sellQuote
+          .filter((_, index) => index < MAX_QUOTES)
+          .reduceRight((computed, { price, size }) => {
+            const latest = computed[computed.length - 1]
+            const total = (
+              Number.parseInt(latest?.total ?? 0) + Number.parseInt(size)
+            ).toString()
+
+            computed.push({
+              price: formatNumber(price),
+              size,
+              total
+            })
+
+            return computed
+          }, [])
+          .reverse()
       }
     }
   }
 })
 
-export const selectLastPrice = state => state.orderbook.lastPrice
-export const selectIsUpGain = state => GAIN.isUp(state.orderbook.gain)
-export const selectIsDownGain = state => GAIN.isDown(state.orderbook.gain)
+export const selectLastPrice = (state) => state.orderbook.lastPrice
+export const selectIsUpGain = (state) => GAIN.isUp(state.orderbook.gain)
+export const selectIsDownGain = (state) => GAIN.isDown(state.orderbook.gain)
+export const selectQuotes = createSelector(
+  [
+    (state) => state.orderbook.sellQuotes,
+    (state) => state.orderbook.buyQuotes,
+    (state, type) => type
+  ],
+  (sellQuotes, buyQuotes, type) => {
+    if (type === QUOTE_TYPE.SELL) {
+      return sellQuotes
+    }
+    if (type === QUOTE_TYPE.BUY) {
+      return buyQuotes
+    }
+  }
+)
 
-export const { updateLatestPrice, updateBuyQuote, updateSellQuote } = orderbookSlice.actions
+export const { updateLatestPrice, updateBuyQuote, updateSellQuote } =
+  orderbookSlice.actions
 
 export default orderbookSlice.reducer
