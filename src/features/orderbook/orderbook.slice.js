@@ -13,29 +13,36 @@ export const GAIN = {
       default:
     }
   },
-  isUp: (rawGain) => {
-    switch (rawGain) {
-      case 1:
+  isUp: (gain) => {
+    switch (gain) {
+      case GAIN.UP:
         return true
-      case -1:
+      case GAIN.DOWN:
         return false
       default:
     }
   },
-  isDown: (rawGain) => {
-    switch (rawGain) {
-      case 1:
+  isDown: (gain) => {
+    switch (gain) {
+      case GAIN.UP:
         return false
-      case -1:
+      case GAIN.DOWN:
         return true
       default:
     }
   }
 }
 
+export const QUOTE_TYPE = {
+  BUY: 'buy',
+  SELL: 'sell'
+}
+
 const initialState = {
   lastPrice: '',
-  gain: 0
+  gain: 0,
+  buyQuote: [],
+  sellQuote: []
 }
 
 export const orderbookSlice = createSlice({
@@ -46,6 +53,18 @@ export const orderbookSlice = createSlice({
       const { lastPrice, gain } = action.payload
       state.lastPrice = formatNumber(lastPrice)
       state.gain = GAIN.parseRawGain(gain)
+    },
+    updateBuyQuote: (state, action) => {
+      const { data } = action.payload
+      if (Array.isArray(data)) {
+        // state.buyQuote = data.map()
+      }
+    },
+    updateSellQuote: (state, action) => {
+      const { data } = action.payload
+      if (Array.isArray(data)) {
+        // state.buyQuote = data.map()
+      }
     }
   }
 })
@@ -54,6 +73,6 @@ export const selectLastPrice = state => state.orderbook.lastPrice
 export const selectIsUpGain = state => GAIN.isUp(state.orderbook.gain)
 export const selectIsDownGain = state => GAIN.isDown(state.orderbook.gain)
 
-export const { updateLatestPrice } = orderbookSlice.actions
+export const { updateLatestPrice, updateBuyQuote, updateSellQuote } = orderbookSlice.actions
 
 export default orderbookSlice.reducer

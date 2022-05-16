@@ -2,7 +2,7 @@ import styles from './OrderBook.module.css'
 import LastPrice from './LastPrice'
 import QuoteRows from './QuoteRows'
 import { useDispatch } from 'react-redux'
-import { updateLatestPrice } from './orderbook.slice'
+import { QUOTE_TYPE, updateLatestPrice } from './orderbook.slice'
 
 const OrderBook = () => {
   const dispatch = useDispatch()
@@ -20,9 +20,9 @@ const OrderBook = () => {
         <div className={styles.quote__header__size}>Size</div>
         <div className={styles.quote__header__total}>Total</div>
       </header>
-      <QuoteRows />
+      <QuoteRows type={QUOTE_TYPE.SELL} />
       <LastPrice />
-      <QuoteRows />
+      <QuoteRows type={QUOTE_TYPE.BUY} />
     </article>
   )
 }

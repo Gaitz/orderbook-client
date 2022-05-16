@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import IconArrowDown from '../../shared/styles/IconArrowDown'
 import styles from './OrderBook.module.css'
 import { useSelector } from 'react-redux'
@@ -28,11 +27,6 @@ const LastPrice = () => {
       <div className={styles.lastPrice__arrow}>{arrow}</div>
     </section>
   )
-}
-
-LastPrice.propTypes = {
-  lastPrice: PropTypes.string,
-  gain: PropTypes.number
 }
 
 export default LastPrice
