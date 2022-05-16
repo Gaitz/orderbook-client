@@ -8,7 +8,7 @@
 ## Requirements
 
 - [ ] Show max 8 quotes for both buy and sell. Quote row should vertical align center.
-- [ ] Format number with commas as thousands separators.
+- [x] Format number with commas as thousands separators.
 - [ ] Add hover background color on whole row when mouse hover on the quote.
 - [x] Last price is up or down is determine by the data `gain` .
       (1 means up, -1 means down, 0 for changed)

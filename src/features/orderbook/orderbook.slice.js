@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { formatNumber } from '../../shared/utils'
 
 const initialState = {
   lastPrice: '',
@@ -11,7 +12,7 @@ export const orderbookSlice = createSlice({
   reducers: {
     updateLatestPrice: (state, action) => {
       const { lastPrice, gain } = action.payload
-      state.lastPrice = lastPrice
+      state.lastPrice = formatNumber(lastPrice)
       state.gain = gain
     }
   }
