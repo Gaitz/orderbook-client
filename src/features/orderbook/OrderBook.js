@@ -1,5 +1,5 @@
 const OrderBook = () => {
-  return <>OrderBook</>;
-};
+  return <>OrderBook</>
+}
 
-export default OrderBook;
+export default OrderBook
