@@ -1,6 +1,6 @@
 import reducer, {
   GAIN,
-  updateSellQuote,
+  updateSellQuotes,
   initialState,
   selectQuotes,
   QUOTE_TYPE
@@ -64,16 +64,16 @@ describe('sell quotes', () => {
     ]
   })
 
-  test('updateSellQuote() from mock websocket response', () => {
+  test('updateSellQuotes() from mock websocket response', () => {
     expect(
-      reducer(initialState, updateSellQuote(mockWebSocketResponse))
+      reducer(initialState, updateSellQuotes(mockWebSocketResponse))
     ).toEqual(updatedState)
   })
 
   test('selectQuotes() with type', () => {
     const stateOrderbook = reducer(
       initialState,
-      updateSellQuote(mockWebSocketResponse)
+      updateSellQuotes(mockWebSocketResponse)
     )
     expect(
       selectQuotes(

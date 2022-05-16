@@ -56,13 +56,13 @@ export const orderbookSlice = createSlice({
       state.lastPrice = formatNumber(lastPrice)
       state.gain = GAIN.parseRawGain(gain)
     },
-    updateBuyQuote: (state, action) => {
+    updateBuyQuotes: (state, action) => {
       const { buyQuote } = action.payload
       if (Array.isArray(buyQuote)) {
         // state.buyQuote = data.map()
       }
     },
-    updateSellQuote: (state, action) => {
+    updateSellQuotes: (state, action) => {
       const { sellQuote } = action.payload
       if (Array.isArray(sellQuote)) {
         state.sellQuotes = sellQuote
@@ -106,7 +106,7 @@ export const selectQuotes = createSelector(
   }
 )
 
-export const { updateLatestPrice, updateBuyQuote, updateSellQuote } =
+export const { updateLatestPrice, updateBuyQuotes, updateSellQuotes } =
   orderbookSlice.actions
 
 export default orderbookSlice.reducer

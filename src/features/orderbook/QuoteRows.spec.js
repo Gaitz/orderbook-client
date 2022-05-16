@@ -1,16 +1,17 @@
 import { render, screen } from '../../shared/testUtil'
 import { store } from '../../shared/store'
-import { QUOTE_TYPE, updateSellQuote } from './orderbook.slice'
+import { QUOTE_TYPE, updateSellQuotes } from './orderbook.slice'
 import QuoteRows from './QuoteRows'
 import mockWebSocketResponse from './mockWebSocketResponse'
 
 test('renders sell quotes', () => {
   store.dispatch(
-    updateSellQuote(mockWebSocketResponse.sellQuote)
+    updateSellQuotes(mockWebSocketResponse)
   )
+  const sellQuotes = store.getState().orderbook.sellQuotes
 
   render(<QuoteRows type={QUOTE_TYPE.SELL} />)
 
-  const buyQuotePrices = screen.getAllByTestId(/^buy-quote-price/)
-  expect(buyQuotePrices[0]).toBe(mockWebSocketResponse.buyQuote[0].price)
+  const sellQuotePrices = screen.getAllByTestId(/^sell-quote-price/)
+  expect(sellQuotePrices[0].textContent).toBe(sellQuotes[0].price)
 })
