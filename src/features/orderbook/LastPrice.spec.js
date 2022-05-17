@@ -1,5 +1,5 @@
 import { store } from '../../shared/store'
-import { render, screen } from '../../shared/testUtil'
+import { render, screen, act } from '../../shared/testUtil'
 import LastPrice from './LastPrice'
 import { updateLatestPrice } from './orderbook.slice'
 
@@ -31,6 +31,25 @@ test('no arrow when gain is 0', () => {
     gain: 0
   }))
   render(<LastPrice />)
+  const arrow = screen.queryByTitle('arrow')
+  expect(arrow).not.toBeInTheDocument()
+})
+
+test('When switch from gain 1 to gain 0', () => {
+  render(<LastPrice />)
+  act(() => {
+    store.dispatch(updateLatestPrice({
+      lastPrice: '47162.5',
+      gain: 1
+    }))
+  })
+  act(() => {
+    store.dispatch(updateLatestPrice({
+      lastPrice: '47162.5',
+      gain: 0
+    }))
+  })
+
   const arrow = screen.queryByTitle('arrow')
   expect(arrow).not.toBeInTheDocument()
 })
