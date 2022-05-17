@@ -20,8 +20,8 @@ const LastPrice = () => {
   return (
     <section
       className={`${styles.lastPrice} 
-        ${isUp && styles.lastPrice__up} 
-        ${isDown && styles.lastPrice__down}`}
+        ${isUp ? styles.lastPrice__up : ''} 
+        ${isDown ? styles.lastPrice__down : ''}`}
     >
       <div className={styles.lastPrice__text}>{lastPrice}</div>
       <div className={styles.lastPrice__arrow}>{arrow}</div>

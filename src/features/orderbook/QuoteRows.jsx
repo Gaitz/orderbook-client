@@ -13,6 +13,10 @@ const QuoteRows = ({ type }) => {
     type === QUOTE_TYPE.SELL
       ? styles.quote__sell__total
       : styles.quote__buy__total
+  const newFlashStyle =
+    type === QUOTE_TYPE.SELL
+      ? styles.quote__row__sell__new
+      : styles.quote__row__buy__new
 
   // console.log(type, quotes)
 
@@ -20,7 +24,7 @@ const QuoteRows = ({ type }) => {
     <section className={styles.quote__list}>
       {quotes.map(({ price, size, total, totalPercent }, index) => (
         <div
-          className={`${styles.quote__header} ${styles.quotes__row__text} `}
+          className={`${styles.quote__header} ${styles.quotes__row__text} ${newFlashStyle}`}
           key={price}
         >
           <div
@@ -30,10 +34,14 @@ const QuoteRows = ({ type }) => {
             {price}
           </div>
           <div className={styles.quote__header__size}>{size}</div>
-          <div className={`${styles.quote__header__total} ${totalStyle}`}
-          style={{
-            '--block-percent': (100 - Number.parseFloat(totalPercent)) + '%'
-          }}>{total}</div>
+          <div
+            className={`${styles.quote__header__total} ${totalStyle}`}
+            style={{
+              '--block-percent': 100 - Number.parseFloat(totalPercent) + '%'
+            }}
+          >
+            {total}
+          </div>
         </div>
       ))}
     </section>

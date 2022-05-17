@@ -1,9 +1,10 @@
 @value pad-left: 10px;
 @value buy-text-color: #00b15d;
 @value sell-text-color: #FF5B5A;
+@value common-background-color: #1e2c4c;
 
 .container {
-  background-color: #1e2c4c;
+  background-color: common-background-color;
   width: 25vw;
   height: fit-content;
 }
@@ -37,6 +38,7 @@
   line-height: 21px;
   padding-left: 10px;
   padding-right: 10px;
+  margin: 2px 0;
 }
 
 .quote__header__price, .quote__header__size  {
@@ -83,6 +85,37 @@
   height: 100%;
   right: var(--block-percent);
 }
+
+.quote__row__sell__new {
+  animation-duration: 100ms;
+  animation-name: is-new-flash-sell;
+}
+
+@keyframes is-new-flash-sell {
+  from {
+    background-color: common-background-color;
+  }
+
+  to {
+    background-color: rgba(255, 91, 90, 0.5);
+  }
+}
+
+.quote__row__buy__new {
+  animation-duration: 100ms;
+  animation-name: is-new-flash-buy;
+}
+
+@keyframes is-new-flash-buy {
+  from {
+    background-color: common-background-color;
+  }
+
+  to {
+    background-color: rgba(0, 177, 93, 0.5);
+  }
+}
+
 
 .lastPrice {
   display: flex;
