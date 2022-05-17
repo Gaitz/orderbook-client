@@ -62,6 +62,12 @@ const computeTotalAndFormat = (computed, { price, size }) => {
 
   return computed
 }
+const computeTotalPercent = (quote, _, quotes) => {
+  const sum = Number.parseInt(quotes[quotes.length - 1].total)
+  const withTotalPercent = Object.assign({}, quote)
+  withTotalPercent.totalPercent = ((Number.parseInt(quote.total) / sum) * 100).toFixed(1)
+  return withTotalPercent
+}
 
 export const orderbookSlice = createSlice({
   name: 'orderbook',
@@ -78,6 +84,8 @@ export const orderbookSlice = createSlice({
         state.buyQuotes = buyQuote
           .filter(smallerThan(MAX_QUOTES))
           .reduce(computeTotalAndFormat, [])
+          .map(computeTotalPercent)
+        // console.log('buy', state.buyQuotes)
       }
     },
     updateSellQuotes: (state, action) => {
@@ -86,7 +94,9 @@ export const orderbookSlice = createSlice({
         state.sellQuotes = sellQuote
           .filter(smallerThan(MAX_QUOTES))
           .reduceRight(computeTotalAndFormat, [])
+          .map(computeTotalPercent)
           .reverse()
+        // console.log('sell', state.sellQuotes)
       }
     }
   }
