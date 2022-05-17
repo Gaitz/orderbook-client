@@ -1,0 +1,180 @@
+@value pad-left: 10px;
+@value buy-text-color: #00b15d;
+@value sell-text-color: #FF5B5A;
+@value common-background-color: #1e2c4c;
+
+.container {
+  background-color: common-background-color;
+  width: 25vw;
+  height: fit-content;
+}
+
+.component__title {
+  padding-left: pad-left;
+  font-size: 15px;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #8698aa;
+}
+
+.quote__header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  text-align: right;
+  box-sizing: border-box;
+}
+
+.quote__header__text {
+  font-size: 12px;
+  color: #8698aa;
+  padding: 5px 10px 0; 
+}
+
+.quotes__row__text {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 21px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 2px 0;
+}
+
+.quotes__row__text:hover {
+  background-color: #334573;
+}
+
+.quote__header__price, .quote__header__size  {
+  flex: 1 1 27%;
+}
+
+.quote__header__total {
+  flex: 1 1 46%;
+  margin-left: 5px;
+}
+
+.quote__sell__price {
+  color: sell-text-color;
+}
+
+.quote__buy__price {
+  color: buy-text-color;
+}
+
+.quote__list {
+  padding-top: 4px;
+  padding-bottom: 3px;
+}
+
+.quote__sell__total, .quote__buy__total {
+  position: relative;
+  overflow: hidden;
+}
+
+.quote__sell__total::after {
+  content: '';
+  position: absolute;
+  background-color: rgba(255, 90, 90, 0.12);
+  width: 100%;
+  height: 100%;
+  right: var(--block-percent);
+}
+
+.quote__buy__total::after {
+  content: '';
+  position: absolute;
+  background-color: rgba(16, 186, 104, 0.12);
+  width: 100%;
+  height: 100%;
+  right: var(--block-percent);
+}
+
+.quote__row__sell__new {
+  animation-duration: 100ms;
+  animation-name: is-new-flash-sell;
+}
+
+@keyframes is-new-flash-sell {
+  from {
+    background-color: common-background-color;
+  }
+
+  to {
+    background-color: rgba(255, 91, 90, 0.5);
+  }
+}
+
+.quote__row__buy__new {
+  animation-duration: 100ms;
+  animation-name: is-new-flash-buy;
+}
+
+@keyframes is-new-flash-buy {
+  from {
+    background-color: common-background-color;
+  }
+
+  to {
+    background-color: rgba(0, 177, 93, 0.5);
+  }
+}
+
+.quote__size__increase {
+  animation-duration: 100ms;
+  animation-name: increase-flash;
+}
+
+.quote__size__decrease {
+  animation-duration: 100ms;
+  animation-name: decrease-flash;
+}
+
+@keyframes increase-flash {
+  from {
+    background-color: common-background-color;
+  }
+
+  to {
+    background-color: rgba(255, 91, 90, 0.5);
+  }
+}
+
+@keyframes decrease-flash {
+  from {
+    background-color: common-background-color;
+  }
+
+  to {
+    background-color: rgba(0, 177, 93, 0.5);
+  }
+}
+
+.lastPrice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 0;
+  background-color: rgba(134,152,170,0.12);
+}
+
+.lastPrice__up {
+  background-color: rgba(16, 186, 104, 0.12);
+  color: buy-text-color;
+}
+
+.lastPrice__down {
+  background-color: rgba(255, 90, 90, 0.12);
+  color: sell-text-color;
+}
+
+.lastPrice__text {
+  font-size: 16.8px;
+  font-weight: 700;
+}
+
+.lastPrice__arrow {
+  padding-left: 3px;
+  width: 15px;
+  height: 15px;
+}
