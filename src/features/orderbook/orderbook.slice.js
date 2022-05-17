@@ -85,7 +85,6 @@ export const orderbookSlice = createSlice({
           .filter(smallerThan(MAX_QUOTES))
           .reduce(computeTotalAndFormat, [])
           .map(computeTotalPercent)
-        // console.log('buy', state.buyQuotes)
       }
     },
     updateSellQuotes: (state, action) => {
@@ -96,7 +95,6 @@ export const orderbookSlice = createSlice({
           .reduceRight(computeTotalAndFormat, [])
           .map(computeTotalPercent)
           .reverse()
-        // console.log('sell', state.sellQuotes)
       }
     }
   }

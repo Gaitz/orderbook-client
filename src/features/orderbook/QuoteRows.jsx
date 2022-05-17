@@ -3,8 +3,16 @@ import { QUOTE_TYPE, selectQuotes } from './orderbook.slice'
 import { useSelector } from 'react-redux'
 import styles from './OrderBook.module.css'
 
+const getSizeChangeStyle = (thisSize, previousSize) => {
+  // console.log(thisSize, previousSize)
+  if (!previousSize) return
+  if (thisSize > previousSize) { return styles.quote__size__increase }
+  if (thisSize < previousSize) { return styles.quote__size__decrease }
+}
+
 const QuoteRows = ({ type }) => {
   const quotes = useSelector((state) => selectQuotes(state, type))
+
   const priceStyle =
     type === QUOTE_TYPE.SELL
       ? styles.quote__sell__price
@@ -18,11 +26,9 @@ const QuoteRows = ({ type }) => {
       ? styles.quote__row__sell__new
       : styles.quote__row__buy__new
 
-  // console.log(type, quotes)
-
   return (
     <section className={styles.quote__list}>
-      {quotes.map(({ price, size, total, totalPercent }, index) => (
+      {quotes.map(({ price, size, total, totalPercent, previousSize }, index) => (
         <div
           className={`${styles.quote__header} ${styles.quotes__row__text} ${newFlashStyle}`}
           key={price}
@@ -33,7 +39,12 @@ const QuoteRows = ({ type }) => {
           >
             {price}
           </div>
-          <div className={styles.quote__header__size}>{size}</div>
+          <div
+            className={`${styles.quote__header__size}`}
+            data-testid={`${type}-quote-size-${index}`}
+          >
+            {size}
+          </div>
           <div
             className={`${styles.quote__header__total} ${totalStyle}`}
             style={{

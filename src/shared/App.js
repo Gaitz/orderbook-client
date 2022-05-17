@@ -17,6 +17,8 @@ function App () {
 
     socket.onmessage = (event) => {
       const { data } = JSON.parse(event.data)
+      if (!data) return
+
       const { lastPrice, gain } = data
 
       dispatch(updateBuyQuotes(data))

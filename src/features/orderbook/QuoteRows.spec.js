@@ -1,4 +1,4 @@
-import { render, screen } from '../../shared/testUtil'
+import { render, screen, act, waitFor } from '../../shared/testUtil'
 import { store } from '../../shared/store'
 import { QUOTE_TYPE, updateSellQuotes, updateBuyQuotes } from './orderbook.slice'
 import QuoteRows from './QuoteRows'
@@ -26,4 +26,35 @@ test('renders buy quotes', () => {
 
   const buyQuotePrices = screen.getAllByTestId(/^buy-quote-price/)
   expect(buyQuotePrices[0].textContent).toBe(buyQuotes[0].price)
+})
+
+test('re-render buy quotes when only size changed', async () => {
+  store.dispatch(
+    updateBuyQuotes({
+      buyQuote: [
+        {
+          price: '47125.5',
+          size: '477'
+        }
+      ]
+    })
+  )
+
+  render(<QuoteRows type={QUOTE_TYPE.BUY} />)
+
+  act(() => {
+    store.dispatch(
+      updateBuyQuotes({
+        buyQuote: [
+          {
+            price: '47125.5',
+            size: '460'
+          }
+        ]
+      })
+    )
+  })
+
+  const buyQuoteSizes = await waitFor(() => screen.getAllByTestId(/^buy-quote-size/))
+  expect(buyQuoteSizes[0].textContent).toBe('460')
 })
