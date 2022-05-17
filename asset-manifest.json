@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/orderbook-client/static/css/main.7de38462.css",
+    "main.js": "/orderbook-client/static/js/main.5af64184.js",
+    "static/js/787.465a246f.chunk.js": "/orderbook-client/static/js/787.465a246f.chunk.js",
+    "index.html": "/orderbook-client/index.html",
+    "main.7de38462.css.map": "/orderbook-client/static/css/main.7de38462.css.map",
+    "main.5af64184.js.map": "/orderbook-client/static/js/main.5af64184.js.map",
+    "787.465a246f.chunk.js.map": "/orderbook-client/static/js/787.465a246f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7de38462.css",
+    "static/js/main.5af64184.js"
+  ]
+}
