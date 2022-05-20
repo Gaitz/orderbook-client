@@ -38,6 +38,12 @@ export const QUOTE_TYPE = {
   SELL: 'sell'
 }
 
+export const CHANGE_TYPE = {
+  INCREASE: '1',
+  NO_CHANGE: '0',
+  DECREASE: '-1'
+}
+
 export const MAX_QUOTES = 8
 
 export const initialState = {

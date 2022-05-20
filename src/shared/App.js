@@ -8,30 +8,30 @@ function App () {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const socket = new WebSocket('wss://ws.btse.com/ws/futures')
+    // const socket = new WebSocket('wss://ws.btse.com/ws/futures')
 
-    socket.onopen = () => {
-      const request = { op: 'subscribe', args: ['orderBookApi:BTCPFC_0'] }
-      socket.send(JSON.stringify(request))
-    }
+    // socket.onopen = () => {
+    //   const request = { op: 'subscribe', args: ['orderBookApi:BTCPFC_0'] }
+    //   socket.send(JSON.stringify(request))
+    // }
 
-    socket.onmessage = (event) => {
-      const { data } = JSON.parse(event.data)
-      if (!data) return
+    // socket.onmessage = (event) => {
+    //   const { data } = JSON.parse(event.data)
+    //   if (!data) return
 
-      const { lastPrice, gain } = data
+    //   const { lastPrice, gain } = data
 
-      dispatch(updateBuyQuotes(data))
-      dispatch(updateSellQuotes(data))
-      dispatch(updateLatestPrice({
-        lastPrice,
-        gain
-      }))
-    }
+    //   dispatch(updateBuyQuotes(data))
+    //   dispatch(updateSellQuotes(data))
+    //   dispatch(updateLatestPrice({
+    //     lastPrice,
+    //     gain
+    //   }))
+    // }
 
-    return () => {
-      socket.close()
-    }
+    // return () => {
+    //   socket.close()
+    // }
   }, [])
 
   return (

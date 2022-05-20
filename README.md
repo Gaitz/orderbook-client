@@ -4,6 +4,7 @@
 
 - create-react-app
 - redux, redux-toolkit
+- web socket
 
 ## Requirements
 

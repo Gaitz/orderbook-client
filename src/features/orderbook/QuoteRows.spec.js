@@ -58,3 +58,42 @@ test('re-render buy quotes when only size changed', async () => {
   const buyQuoteSizes = await waitFor(() => screen.getAllByTestId(/^buy-quote-size/))
   expect(buyQuoteSizes[0].textContent).toBe('460')
 })
+
+test('when quote size increase then re-render should show increase flash style', async () => {
+  store.dispatch(
+    updateBuyQuotes({
+      buyQuote: [
+        {
+          price: '47125.5',
+          size: '460'
+        },
+        {
+          price: '47100.5',
+          size: '300'
+        }
+      ]
+    })
+  )
+
+  render(<QuoteRows type={QUOTE_TYPE.BUY} />)
+
+  act(() => {
+    store.dispatch(
+      updateBuyQuotes({
+        buyQuote: [
+          {
+            price: '48000.5',
+            size: '20'
+          },
+          {
+            price: '47125.5',
+            size: '477'
+          }
+        ]
+      })
+    )
+  })
+
+  const buyQuoteSizes = await waitFor(() => screen.getAllByTestId(/^buy-quote-size/))
+  expect(buyQuoteSizes[0].className).toContain('quote__size__increase')
+})

@@ -7,15 +7,15 @@ import mockWebSocketResponse from './mockWebSocketResponse'
 
 const OrderBook = () => {
   const dispatch = useDispatch()
-  // const store = useStore()
-  // console.log(store.getState())
+  const store = useStore()
+  console.log(store.getState())
 
-  // dispatch(updateBuyQuotes(mockWebSocketResponse))
-  // dispatch(updateSellQuotes(mockWebSocketResponse))
-  // dispatch(updateLatestPrice({
-  //   lastPrice: '42576.0',
-  //   gain: '0'
-  // }))
+  dispatch(updateBuyQuotes(mockWebSocketResponse))
+  dispatch(updateSellQuotes(mockWebSocketResponse))
+  dispatch(updateLatestPrice({
+    lastPrice: '42576.0',
+    gain: '0'
+  }))
 
   return (
     <article className={styles.container}>
