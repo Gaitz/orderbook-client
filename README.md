@@ -4,6 +4,8 @@
 
 - create-react-app
 - redux, redux-toolkit
+- Jest
+- browser native WebSocket API
 
 ## Requirements
 
